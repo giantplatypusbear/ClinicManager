@@ -1,3 +1,7 @@
+import Clinic.*;
+import util.*;
+
+
 import java.io.File;
 import java.io.IOException;
 import java.util.Iterator;
@@ -11,7 +15,9 @@ public class ClinicManager {
     private List<Technician> technicians;
     private List<Doctor> doctors;
     private List<Imaging> imagingList;
+    private List<Appointment> officeAppointments;
     Iterator<Technician> techIterator;
+
 
 
 
@@ -24,6 +30,8 @@ public class ClinicManager {
         doctors = new List<>();
         imagingList = new List<>();
         techIterator= technicians.iterator();
+        officeAppointments = new List<>();
+
 
     }
 
@@ -42,7 +50,7 @@ public class ClinicManager {
             char docOrTech = tokenizer.nextToken().charAt(0); // 'D' or 'T'
             String firstName = tokenizer.nextToken();
             String lastName = tokenizer.nextToken();
-            String dobString = tokenizer.nextToken(); // Date of Birth
+            String dobString = tokenizer.nextToken(); // util.Date of Birth
             String city = tokenizer.nextToken();
             if (docOrTech == 'D') {
                 String specialty = tokenizer.nextToken();
@@ -92,13 +100,14 @@ public class ClinicManager {
 
     public void printSortedProviders() {
         List<Provider> sortedProviders = new List<>();
+
         for (int i = 0; i < providers.size(); i++) {
             sortedProviders.add(providers.get(i));
         }
         Sort.sortProvidersByLastName(sortedProviders);
         System.out.println("Providers loaded to the list.");
         for (int i=0; i<providers.size(); i++) {
-            System.out.println(providers.get(i).toString());
+            System.out.println(sortedProviders.get(i).toString());
         }
     }
 
@@ -154,18 +163,22 @@ public class ClinicManager {
                 Sort.sortByAppointment(appointments);
                 printLists();
                 break;
-//            case "PP":
-//                printLists('P');
-//                break;
-//            case "PL":
-//                printLists('L');
-//                break;
-//            case "PO":
-//                printLists('O');
-//                break;
-//            case "PI":
-//                printLists('I');
-//                break;
+            case "PP":
+                Sort.sortByPatient(appointments);
+                printLists();
+                break;
+            case "PL":
+                Sort.sortByLocation(appointments);
+                printLists();
+                break;
+            case "PO":
+              //  util.Sort.sortByOffice();
+                printLists();
+                break;
+            case "PI":
+              //  util.Sort.sortByRadiology(imagingList);
+                printLists();
+                break;
 //            case "PC":
 //                printCredits();
 //                break;
@@ -209,6 +222,7 @@ public class ClinicManager {
        if(!hasPatientConflict(patient, date, timeslot)&& !hasProviderConflict(doctor, date, timeslot)){
             Appointment appointment= new Appointment(date, timeslot, patient, doctor);
             appointments.add(appointment);
+            officeAppointments.add(appointment);
             System.out.println(appointment.toString()+ " booked.");
             }
     }
@@ -337,12 +351,6 @@ public class ClinicManager {
             System.out.println("Schedule calendar is empty.");
             return;
         }
-        System.out.println("\n** List test **");
-        for(int i=0; appointments.size()>i; i++){
-            System.out.println(appointments.get(i).toString());
-        }
-        System.out.println("\ntest over");
-       // Sort.appointment(appointments,key);
         for(int i=0; appointments.size()>i; i++){
             System.out.println(appointments.get(i).toString());
         }
@@ -387,19 +395,19 @@ public class ClinicManager {
             if (appointments.get(i).getProvider().equals(provider) && appointments.get(i).getDate().equals(date) &&
                     appointments.get(i).getTimeslot().equals(time)) {
                 System.out.println(provider.toString()+ " is not available at slot "+ Timeslot.getSlotNumber(time));
-                return true; // Technician is already booked
+                return true; // InheritedAndRelated.Technician is already booked
             }
         }
-        return false; // Technician is available
+        return false; // InheritedAndRelated.Technician is available
     }
     private boolean hasTechnicianConflict(Provider provider, Date date, Timeslot time) {
         for (int i=0; imagingList.size()>i; i++) {
             if (imagingList.get(i).getProvider().equals(provider) && imagingList.get(i).getDate().equals(date) &&
                     imagingList.get(i).getTimeslot().equals(time)) {
-                return true; // Technician is already booked
+                return true; // InheritedAndRelated.Technician is already booked
             }
         }
-        return false; // Technician is available
+        return false; // InheritedAndRelated.Technician is available
     }
 
     // Check if the room is available at the technician's location for the imaging type
@@ -434,30 +442,30 @@ public class ClinicManager {
     }
     public boolean checkAppDate(Date date){
         if(!date.isValid()){
-            System.out.println("Appointment date: "+ date+" is not a valid calendar date ");
+            System.out.println("InheritedAndRelated.Appointment date: "+ date+" is not a valid calendar date ");
             return false;
         }
         if(date.isBeforeToday()){
-            System.out.println("Appointment date: "+ date+" is today or a date before today.");
+            System.out.println("InheritedAndRelated.Appointment date: "+ date+" is today or a date before today.");
             return false;
         }
         if(!date.isWithinSixMonths(date)){
-            System.out.println("Appointment date: "+ date+" is not within six months.");
+            System.out.println("InheritedAndRelated.Appointment date: "+ date+" is not within six months.");
             return false;
         }
         if(date.isWeekend(date)){
-            System.out.println("Appointment date: "+ date+" is Saturday or Sunday.");
+            System.out.println("InheritedAndRelated.Appointment date: "+ date+" is Saturday or Sunday.");
             return false;
         }
         return true;
     }
     public boolean checkDOB(Date dob){
         if(!dob.isValid()){
-            System.out.println("Patient dob: "+ dob+" is not a valid calendar date ");
+            System.out.println("InheritedAndRelated.Patient dob: "+ dob+" is not a valid calendar date ");
             return false;
         }
         if(dob.isAfterToday()){
-            System.out.println("Patient dob: " +dob+" is today or a date after today.");
+            System.out.println("InheritedAndRelated.Patient dob: " +dob+" is today or a date after today.");
             return false;
         }
         return true;

@@ -1,4 +1,4 @@
-
+package InheritedAndRelated;
 
 public enum Specialty {
     FAMILY(250),

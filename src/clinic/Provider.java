@@ -1,4 +1,4 @@
-
+package InheritedAndRelated;
 
 public abstract class Provider extends Person {
 

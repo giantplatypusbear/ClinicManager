@@ -1,9 +1,11 @@
+package InheritedAndRelated;
 
+import util.Date;
 
 public class Profile implements Comparable<Profile> {
     private String fname;  // First name
     private String lname;  // Last name
-    private Date dob;      // Date of birth
+    private Date dob;      // util.Date of birth
 
     // Constructor
     public Profile(String fname, String lname, Date dob) {

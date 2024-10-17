@@ -1,3 +1,4 @@
+package InheritedAndRelated;
 
 public class Visit {
     // Fields
@@ -15,7 +16,7 @@ public class Visit {
         return appointment;
     }
 
-    // Getter and Setter for next Visit
+    // Getter and Setter for next InheritedAndRelated.Visit
     public Visit getNext() {
         return next;
     }

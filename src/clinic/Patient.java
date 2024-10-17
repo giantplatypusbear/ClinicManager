@@ -1,4 +1,4 @@
-
+package InheritedAndRelated;
 
 public class Patient extends Person {
     private Visit visits;      // Head of the linked list of visits (completed appointments)
@@ -21,7 +21,7 @@ public class Patient extends Person {
     // Calculate the total charge based on completed visits
 //    public int charge() {
 //        int totalCharge = 0;
-//        Visit current = visits;
+//        InheritedAndRelated.Visit current = visits;
 
         // Traverse the linked list of visits and sum up the charges
 //        while (current != null) {

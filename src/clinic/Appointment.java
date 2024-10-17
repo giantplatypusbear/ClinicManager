@@ -1,4 +1,7 @@
+package InheritedAndRelated;
 
+import util.Date;
+import util.Timeslot;
 
 public class Appointment implements Comparable<Appointment> {
 
@@ -66,7 +69,7 @@ public class Appointment implements Comparable<Appointment> {
         }
         return String.format("%d:%02d %s", hour, minute, amPm);
     }
-    // Override toString() method using inherited toString() methods from Person
+    // Override toString() method using inherited toString() methods from InheritedAndRelated.Person
     @Override
     public String toString() {
         return String.format("%s %s %s %s",
@@ -78,20 +81,5 @@ public class Appointment implements Comparable<Appointment> {
         );
     }
 
-    public static void main(String[] args) {
-        // Create a profile for a patient
-        Profile patientProfile = new Profile("Alice", "Smith", new Date(2000, 1, 1));
-        Patient patient = new Patient(patientProfile, null);
 
-        // Create a profile for a provider
-        Profile providerProfile = new Profile("Dr. John", "Doe", new Date(1970, 1, 1));;
-        Provider provider = new Technician(providerProfile, Location.CLARK,20);
-
-        // Create an appointment
-        Date date = new Date(2022, 1, 1);
-        Appointment appointment = new Imaging(date, Timeslot.SLOT1, patient, provider, Radiology.XRAY);
-
-        // Print the appointment
-        System.out.println(appointment);
-    }
 }

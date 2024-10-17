@@ -1,3 +1,5 @@
+package InheritedAndRelated;
+
 import java.text.DecimalFormat;
 
 public class Technician extends Provider {

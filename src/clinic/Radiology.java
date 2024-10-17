@@ -1,3 +1,5 @@
+package InheritedAndRelated;
+
 public enum Radiology {
     XRAY,
     ULTRASOUND,

@@ -1,3 +1,4 @@
+package InheritedAndRelated;
 
 public enum Location {
     BRIDGEWATER("Somerset", "08807"),

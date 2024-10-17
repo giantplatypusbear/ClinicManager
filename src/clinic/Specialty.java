@@ -1,4 +1,4 @@
-package InheritedAndRelated;
+package clinic;
 
 public enum Specialty {
     FAMILY(250),

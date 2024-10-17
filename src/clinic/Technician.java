@@ -1,4 +1,4 @@
-package InheritedAndRelated;
+package clinic;
 
 import java.text.DecimalFormat;
 
@@ -11,7 +11,7 @@ public class Technician extends Provider {
         this.ratePerVisit = ratePerVisit;
 
     }
-    public String reformatRate(int rate){
+    private String reformatRate(int rate){
         DecimalFormat decimalFormat = new DecimalFormat("#.00");
         String formattedNumber = decimalFormat.format(rate);
         return String.format("$%s", formattedNumber);

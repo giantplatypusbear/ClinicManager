@@ -1,4 +1,4 @@
-package InheritedAndRelated;
+package clinic;
 
 public class Doctor extends Provider {
     private Specialty specialty;

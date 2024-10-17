@@ -1,36 +1,60 @@
-package InheritedAndRelated;
+package clinic;
+import util.Date;
 
 public class Patient extends Person {
     private Visit visits;      // Head of the linked list of visits (completed appointments)
 
-    // Constructor
-    public Patient(Profile profile, Visit visits) {
+    /**
+     *
+     * @param profile
+     */
+    public Patient(Profile profile) {
         super(profile);
         this.visits = null;  // Initially, no visits are completed
     }
+    public Patient(Profile profile, Visit visits) {
+        super(profile);
+        this.visits = visits;  // Initially, no visits are completed
+    }
 
+    /**
+     *
+     * @return
+     */
+    public Visit getVisits() {
+        return visits;
+    }
 
-
-    // Add a visit to the linked list of completed visits
+    /**
+     *
+     * @param appointment
+     */
     public void addVisit(Appointment appointment) {
         Visit newVisit = new Visit(appointment);
         newVisit.setNext(visits);  // Insert the new visit at the beginning of the linked list
         visits = newVisit;         // Update the head of the list
     }
+    public void deleteVisit(Appointment appointment) {
+        if (visits == null) {
+            return; // No visits to delete
+        }
 
-    // Calculate the total charge based on completed visits
-//    public int charge() {
-//        int totalCharge = 0;
-//        InheritedAndRelated.Visit current = visits;
+        // If the visit to delete is the head of the list
+        if (visits.getAppointment().equals(appointment)) {
+            visits = visits.getNext();
+            return;
+        }
 
-        // Traverse the linked list of visits and sum up the charges
-//        while (current != null) {
-//            totalCharge += current.getAppointment().getProvider().getSpecialty().getCharge();
-//            current = current.getNext();  // Move to the next visit in the list
-//        }
-//
-//        return totalCharge;
-// }
+        // Traverse the list to find and delete the visit
+        Visit current = visits;
+        while (current.getNext() != null) {
+            if (current.getNext().getAppointment().equals(appointment)) {
+                current.setNext(current.getNext().getNext());
+                return;
+            }
+            current = current.getNext();
+        }
+    }
 
     // Override equals() method
     @Override

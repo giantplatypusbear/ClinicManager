@@ -1,8 +1,8 @@
-package InheritedAndRelated;
+package clinic;
 
 public class Visit {
     // Fields
-    private Appointment appointment;  // The appointment for this visit
+    private final Appointment appointment;  // The appointment for this visit
     private Visit next;               // Reference to the next visit in the list
 
     // Constructor

@@ -1,4 +1,4 @@
-package InheritedAndRelated;
+package clinic;
 
 public enum Radiology {
     XRAY,

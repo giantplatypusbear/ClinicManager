@@ -1,4 +1,4 @@
-package InheritedAndRelated;
+package clinic;
 
 import util.Date;
 import util.Timeslot;

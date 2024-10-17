@@ -1,6 +1,7 @@
-package InheritedAndRelated;
+package clinic;
 
 import util.Date;
+
 
 public class Profile implements Comparable<Profile> {
     private String fname;  // First name
@@ -44,13 +45,20 @@ public class Profile implements Comparable<Profile> {
         // Compare by last name (case insensitive)
         int lnameComparison = this.lname.compareToIgnoreCase(other.lname);
         if (lnameComparison != 0) {
-            return lnameComparison;
+            if(lnameComparison > 0) {
+                return 1;
+            } else {
+                return -1;
+            }
         }
 
-        // If last names are the same, compare by first name (case insensitive)
         int fnameComparison = this.fname.compareToIgnoreCase(other.fname);
         if (fnameComparison != 0) {
-            return fnameComparison;
+            if(fnameComparison > 0) {
+                return 1;
+            } else {
+                return -1;
+            }
         }
 
         // If both names are the same, compare by date of birth

@@ -1,3 +1,5 @@
+package util;
+
 public class Timeslot implements Comparable<Timeslot> {
     private int hour;   // Hour in 24-hour format (0 - 23)
     private int minute; // Minute (0 - 59)
@@ -79,7 +81,8 @@ public class Timeslot implements Comparable<Timeslot> {
     public int compareTo(Timeslot other) {
         if (this.hour != other.hour) {
             return Integer.compare(this.hour, other.hour);  // Compare hours first
-        } else {
+        }
+        else {
             return Integer.compare(this.minute, other.minute);  // Compare minutes if hours are the same
         }
     }
